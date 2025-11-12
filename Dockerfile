@@ -1,5 +1,5 @@
 # OpenJDK 17을 기반으로 하는 경량화 스프링 부트 이미지
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 # 작업 디렉토리 설정
 WORKDIR /app

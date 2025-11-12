@@ -37,7 +37,6 @@ public class S3ImageService {
     private String bucketName;
 
 
-
     //실제로 업로드를 담당하는 기능 -> 파일이 없을 때 null을 반환함.
     public String upload(MultipartFile image) {
 

@@ -1,14 +1,14 @@
-package project.MilkyWay.Config;
-
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class S3Config {
+
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
 
@@ -19,13 +19,14 @@ public class S3Config {
     private String region;
 
     @Bean
-    public AmazonS3Client s3Client() {
+    public AmazonS3 s3Client() {
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
 
-        return (AmazonS3Client) AmazonS3Client.builder()
+        return AmazonS3ClientBuilder.standard()
                 .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                // Metrics Collector 비활성화 -> t3.micro 안정화
+                .withMetricsCollector(null)
                 .build();
     }
 }
-///https://hyun-my-it-blog.tistory.com/entry/Spring-Boot%EC%97%90%EC%84%9C-S3-%ED%99%9C%EC%9A%A9

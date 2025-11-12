@@ -49,6 +49,7 @@ public class UserController //관리자 아이디를 관리하는 DTO
     @Autowired
     UserService userService;
 
+
     LoginSuccess loginSuccess = new LoginSuccess();
 
     @Autowired

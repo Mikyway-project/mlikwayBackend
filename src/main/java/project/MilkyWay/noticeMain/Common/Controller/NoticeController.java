@@ -399,7 +399,7 @@ public class NoticeController //Notice, Noticedetaill 동시 동작
                 {
                     list.add(noticeDTO);//자동으로 못가져오면 추가하거나 수정 예정
                 }
-                return ResponseEntity.ok().body(responseDTO.Response("success", "데이터 전송 완료",  list));
+                return ResponseEntity.ok().body(responseDTO.Response("dataAll", "데이터 전송 완료",  list));
             }
             else
             {
